@@ -1,6 +1,6 @@
 const button = document.querySelector("button")
 
-button. addEventListener("click", () => {
+button.addEventListener("click", () => {
   Notification.requestPermission().then(perm => {
   if (perm === "granted") {
     const notification = new Notification("Example notification", {
@@ -8,7 +8,7 @@ button. addEventListener("click", () => {
         data: {hello: "World"},
         icon: "Logo Centered.png",
         tag: "Welcome Message",
-        vibrate: "",
+        vibrate: "300, 100, 300, 100, 300",
     })
 
     notification.addEventListener("error", e => {
@@ -33,7 +33,7 @@ document.addEventListener("visibilitychange", () => {
         })
     }, 100)
     } else {
-        clearInterval(interval)
-        notification.close()
+        if (interval) clearInterval(interval)
+        if (notification) notification.close()
     }
 })
